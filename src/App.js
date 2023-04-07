@@ -102,7 +102,9 @@ const App = () => {
               <p>{message.content}</p>
             </li>
           ))}
-          {!currentTitle && <p>Start a chat with PengGPT!</p>}
+          {!currentTitle && (
+            <h4 className="start-chat">Start a chat with PengGPT!</h4>
+          )}
         </ul>
         <div className="bottom-section">
           <div className="input-container">
