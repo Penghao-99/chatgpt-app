@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap");
+
+* {
+  color: white;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  background-color: #343541;
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  background-color: #202123;
+  height: 100vh;
+  width: 300px; /* might want to change to fixed pixels*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.history {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; */
+  padding: 10px;
+  margin: 10px;
+  height: 100%;
+}
+
+.history li {
+  padding: 3% 0%;
+  cursor: pointer;
+  list-style-type: none;
+}
+button {
+  border: solid 1px rgba(255, 255, 255, 0.5);
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+nav {
+  border-top: solid 1px rgba(255, 255, 255, 0.5);
+  padding: 3%;
+  margin: 3%;
+}
+
+.main {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.feed {
+  overflow: auto;
+  width: 100%;
+  padding: 0;
+}
+
+.feed li {
+  list-style-type: none;
+  display: flex;
+  background-color: #444654;
+  /* width: 100%; */
+  padding: 20px;
+  margin: 20px 0px;
+}
+
+.feed p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  text-align: left;
+}
+
+.feed p.role {
+  min-width: 100px; /* creating min separation */
+}
+
+.bottom-section {
+  background-color: #343541;
+  width: 100%;
+  /* height: 20%; */ /* setting height might fix the container's size, and other parts may spill out*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.info {
+  color: rgba(255, 255, 255, 0.5);
+  font: 11px;
+  padding: 10px;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: center; */
+}
+
+input {
+  width: 100%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 12px 15px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 54px 55px, rgba(0, 0, 0, 0.05) 0 -12px 30px,
+    rgba(0, 0, 0, 0.05) 0 4px 6px, rgba(0, 0, 0, 0.05) 0 12px 3px,
+    rgba(0, 0, 0, 0.05) 0 -3px 5px;
+  /* colour, horizontal offset, vertical offset, blur*/
+  font-size: 20px;
+}
+
+input:focus {
+  outline: none;
+}
+
+#submit {
+  position: absolute;
+  right: 0;
+  bottom: 15px;
+  cursor: pointer;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* The whole scrollable part */
+::-webkit-scrollbar-track {
+  background: #31262677;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b9b6b6;
+}
