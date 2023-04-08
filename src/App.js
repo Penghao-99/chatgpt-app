@@ -103,7 +103,7 @@ const App = () => {
         </ul>
         <nav>
           <p>Made by Peng Hao</p>
-          <button>Rate my app!</button>
+          <button>Rate my app! (soon)</button>
         </nav>
       </section>
       <section className="main">
