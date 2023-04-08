@@ -7,8 +7,9 @@ const App = () => {
   const [message, setMessage] = useState(null);
   const [prevChats, setPrevChats] = useState([]);
   const [currentTitle, setCurrentTitle] = useState(null);
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState("Ready for questions!");
   const getMessages = async () => {
+    setStatus("Waiting for reply...");
     try {
       const options = {
         method: "POST",
@@ -26,16 +27,22 @@ const App = () => {
       const data = await response.json();
       // setStatus(data);
       console.log(data);
+      setStatus("Ready for questions!");
       setMessage(data.choices[0].message);
     } catch (error) {
       console.error(error);
-      // setStatus(error);
+      // setStatus("error!");
     }
   };
+  // useEffect(() => {
+  //   console.log("status changed!");
+  //   console.log(status);
+  // }, [status]);
+
   useEffect(() => {
     if (!currentTitle && prompt && message) {
       setCurrentTitle(prompt);
-      setPrompt("");
+      // setPrompt("");
     }
     if (currentTitle && prompt && message) {
       setPrevChats((prevChats) => [
@@ -80,11 +87,11 @@ const App = () => {
   const prevChatsTitles = prevChats.map((message) => message.title);
   const unqiueSetTitles = new Set(prevChatsTitles);
   const unqiueArrayTitles = Array.from(unqiueSetTitles);
-  function renderChatTitles() {
-    return unqiueArrayTitles.map((title, index) => (
-      <li key={index}>{title}</li>
-    ));
-  }
+  // function renderChatTitles() {
+  //   return unqiueArrayTitles.map((title, index) => (
+  //     <li key={index}>{title}</li>
+  //   ));
+  // }
   const handleClick = (title) => {
     setCurrentTitle(title);
     setMessage(null);
@@ -115,11 +122,11 @@ const App = () => {
           {currentChat.map((message, index) => (
             <li
               key={index}
-              className={message.role == "user" ? "user-box" : "gpt-box"}
+              className={message.role === "user" ? "user-box" : "gpt-box"}
             >
               <p className="role">{message.role}:</p>
               <p>
-                {message.role == "user" ? (
+                {message.role === "user" ? (
                   message.content
                 ) : (
                   <TypeAnimation
@@ -153,18 +160,9 @@ const App = () => {
               ➢
             </div>
           </div>
-          <p>
-            Status:{" "}
-            <TypeAnimation
-              sequence={[
-                // Same String at the start will only be typed once, initially
-                `${status}...`,
-              ]}
-              speed={80}
-              repeat={true}
-              cursor={false}
-              omitDeletionAnimation={true}
-            />
+          <p className="status">
+            Status:
+            {` ${status}`}
           </p>
           <p className="info">
             7/4 version 10.22pm by Peng hao! Prompts are sent to chatGPT using
