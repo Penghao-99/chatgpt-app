@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { TypeAnimation } from "react-type-animation";
+import { AiOutlineMessage } from "react-icons/ai";
 
 const App = () => {
   const [prompt, setPrompt] = useState(null);
@@ -30,6 +32,7 @@ const App = () => {
   useEffect(() => {
     if (!currentTitle && prompt && message) {
       setCurrentTitle(prompt);
+      setPrompt("");
     }
     if (currentTitle && prompt && message) {
       setPrevChats((prevChats) => [
@@ -45,14 +48,23 @@ const App = () => {
           content: message.content,
         },
       ]);
+      setPrompt("");
     }
   }, [message, currentTitle]);
+
+  // useEffect(() => {
+  //   document.addEventListener("keypress", detectKeyDown);
+  // }, []);
+  // const detectKeyDown = (event) => {
+  //   console.log("clicked key", event.key);
+  // };
+
   const createNewChat = () => {
     setMessage(null);
     setCurrentTitle(null);
     setPrompt(""); // why cannot set null?
   };
-  console.log("prevChats:", prevChats);
+  // console.log("prevChats:", prevChats);
 
   prevChats.map((message, index) => {
     console.log(message, index);
@@ -83,7 +95,8 @@ const App = () => {
         <ul className="history">
           {unqiueArrayTitles.map((title, index) => (
             <li key={index} onClick={() => handleClick(title)}>
-              {title}
+              <AiOutlineMessage className="chat-svg" />
+              <span>{title}</span>
             </li>
           ))}
           {/* {renderChatTitles()} */}
@@ -97,9 +110,27 @@ const App = () => {
         {!currentTitle && <h1>PengGPT</h1>}
         <ul className="feed">
           {currentChat.map((message, index) => (
-            <li key={index}>
+            <li
+              key={index}
+              className={message.role == "user" ? "user-box" : "gpt-box"}
+            >
               <p className="role">{message.role}:</p>
-              <p>{message.content}</p>
+              <p>
+                {message.role == "user" ? (
+                  message.content
+                ) : (
+                  <TypeAnimation
+                    sequence={[
+                      // Same String at the start will only be typed once, initially
+                      `${message.content}`,
+                    ]}
+                    speed={80}
+                    repeat={0}
+                    cursor={false}
+                    omitDeletionAnimation={true}
+                  />
+                )}
+              </p>
             </li>
           ))}
           {!currentTitle && (
@@ -109,14 +140,20 @@ const App = () => {
         <div className="bottom-section">
           <div className="input-container">
             <input
+              type="text"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-            ></input>
+              placeholder="Whatchu wanna know next? Blast away!"
+            />
+
             <div id="submit" onClick={getMessages}>
               ➢
             </div>
           </div>
-          <p className="info">7/4 version 10.22pm by Peng hao!</p>
+          <p className="info">
+            7/4 version 10.22pm by Peng hao! Prompts are sent to chatGPT using
+            OpenAI API.
+          </p>
         </div>
       </section>
     </div>
