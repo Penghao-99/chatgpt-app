@@ -7,6 +7,7 @@ const App = () => {
   const [message, setMessage] = useState(null);
   const [prevChats, setPrevChats] = useState([]);
   const [currentTitle, setCurrentTitle] = useState(null);
+  const [status, setStatus] = useState(null);
   const getMessages = async () => {
     try {
       const options = {
@@ -23,10 +24,12 @@ const App = () => {
         options
       );
       const data = await response.json();
+      // setStatus(data);
       console.log(data);
       setMessage(data.choices[0].message);
     } catch (error) {
       console.error(error);
+      // setStatus(error);
     }
   };
   useEffect(() => {
@@ -150,6 +153,19 @@ const App = () => {
               ➢
             </div>
           </div>
+          <p>
+            Status:{" "}
+            <TypeAnimation
+              sequence={[
+                // Same String at the start will only be typed once, initially
+                `${status}...`,
+              ]}
+              speed={80}
+              repeat={true}
+              cursor={false}
+              omitDeletionAnimation={true}
+            />
+          </p>
           <p className="info">
             7/4 version 10.22pm by Peng hao! Prompts are sent to chatGPT using
             OpenAI API.
