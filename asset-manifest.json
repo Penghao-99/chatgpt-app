@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/chatgpt-app/static/css/main.cc961fc8.css",
-    "main.js": "/chatgpt-app/static/js/main.214d6ac2.js",
+    "main.js": "/chatgpt-app/static/js/main.d03854d6.js",
     "index.html": "/chatgpt-app/index.html",
     "main.cc961fc8.css.map": "/chatgpt-app/static/css/main.cc961fc8.css.map",
-    "main.214d6ac2.js.map": "/chatgpt-app/static/js/main.214d6ac2.js.map"
+    "main.d03854d6.js.map": "/chatgpt-app/static/js/main.d03854d6.js.map"
   },
   "entrypoints": [
     "static/css/main.cc961fc8.css",
-    "static/js/main.214d6ac2.js"
+    "static/js/main.d03854d6.js"
   ]
 }
