@@ -21,7 +21,7 @@ const App = () => {
         }),
       };
       const response = await fetch(
-        "http://localhost:8000/completions",
+        "https://penghao-99.github.io/chatgpt-app/completions",
         options
       );
       const data = await response.json();
@@ -31,13 +31,9 @@ const App = () => {
       setMessage(data.choices[0].message);
     } catch (error) {
       console.error(error);
-      // setStatus("error!");
+      setStatus("Error!");
     }
   };
-  // useEffect(() => {
-  //   console.log("status changed!");
-  //   console.log(status);
-  // }, [status]);
 
   useEffect(() => {
     if (!currentTitle && prompt && message) {
